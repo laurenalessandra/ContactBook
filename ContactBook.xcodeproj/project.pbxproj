@@ -11,13 +11,13 @@
 		4D3069F02241EBCD00E3F6C4 /* ListContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3069EF2241EBCD00E3F6C4 /* ListContact.swift */; };
 		4D3069F22241EC4600E3F6C4 /* ContactDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3069F12241EC4600E3F6C4 /* ContactDownloader.swift */; };
 		4D345E32224A9149004911E9 /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D345E31224A9149004911E9 /* CoreData.swift */; };
+		4D345E34224AB6A9004911E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4D345E33224AB6A9004911E9 /* GoogleService-Info.plist */; };
 		4D69B5892242D25C00FD2BBB /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D69B5882242D25C00FD2BBB /* Alert.swift */; };
 		4DA55FEE2241C05500AA81C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA55FED2241C05500AA81C1 /* AppDelegate.swift */; };
 		4DA55FF02241C05500AA81C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA55FEF2241C05500AA81C1 /* ViewController.swift */; };
 		4DA55FF32241C05500AA81C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DA55FF12241C05500AA81C1 /* Main.storyboard */; };
 		4DA55FF52241C06600AA81C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DA55FF42241C06600AA81C1 /* Assets.xcassets */; };
 		4DA55FF82241C06600AA81C1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DA55FF62241C06600AA81C1 /* LaunchScreen.storyboard */; };
-		4DA560002241C0C700AA81C1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4DA55FFF2241C0C700AA81C1 /* GoogleService-Info.plist */; };
 		4DD011B12242B1B6004F2250 /* ContactBook.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DD011AF2242B1B6004F2250 /* ContactBook.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +26,7 @@
 		4D3069EF2241EBCD00E3F6C4 /* ListContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContact.swift; sourceTree = "<group>"; };
 		4D3069F12241EC4600E3F6C4 /* ContactDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDownloader.swift; sourceTree = "<group>"; };
 		4D345E31224A9149004911E9 /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
+		4D345E33224AB6A9004911E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../.Trash/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4D69B5882242D25C00FD2BBB /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		4DA55FEA2241C05500AA81C1 /* ContactBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DA55FED2241C05500AA81C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -34,7 +35,6 @@
 		4DA55FF42241C06600AA81C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DA55FF72241C06600AA81C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DA55FF92241C06600AA81C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4DA55FFF2241C0C700AA81C1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4DD011B02242B1B6004F2250 /* ContactBook.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ContactBook.xcdatamodel; sourceTree = "<group>"; };
 		ABADD7ADBF0608C28CCFE8D4 /* Pods-ContactBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContactBook.release.xcconfig"; path = "Pods/Target Support Files/Pods-ContactBook/Pods-ContactBook.release.xcconfig"; sourceTree = "<group>"; };
 		C9350100B3AF0223C0D35DCD /* Pods_ContactBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContactBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,8 +90,8 @@
 				4DA55FF12241C05500AA81C1 /* Main.storyboard */,
 				4DA55FF42241C06600AA81C1 /* Assets.xcassets */,
 				4DA55FF62241C06600AA81C1 /* LaunchScreen.storyboard */,
-				4DA55FFF2241C0C700AA81C1 /* GoogleService-Info.plist */,
 				4DD011AF2242B1B6004F2250 /* ContactBook.xcdatamodeld */,
+				4D345E33224AB6A9004911E9 /* GoogleService-Info.plist */,
 				4DA55FF92241C06600AA81C1 /* Info.plist */,
 			);
 			path = ContactBook;
@@ -168,7 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DA55FF82241C06600AA81C1 /* LaunchScreen.storyboard in Resources */,
-				4DA560002241C0C700AA81C1 /* GoogleService-Info.plist in Resources */,
+				4D345E34224AB6A9004911E9 /* GoogleService-Info.plist in Resources */,
 				4DA55FF52241C06600AA81C1 /* Assets.xcassets in Resources */,
 				4DA55FF32241C05500AA81C1 /* Main.storyboard in Resources */,
 			);
