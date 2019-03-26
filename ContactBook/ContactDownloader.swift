@@ -29,11 +29,8 @@ class ContactDownloader: Downloader {
             for contact in querySnapshot!.documents {
                 let contact = ListContact(dictionary: contact.data())
                 contacts.append(contact)
-                print(contact)
             }
             completed(contacts)
         }
-
     }
-    
 }

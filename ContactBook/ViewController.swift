@@ -24,12 +24,8 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.31, green:0.81, blue:0.28, alpha:1.0)
-        self.navigationController?.navigationBar.isTranslucent = false
-        let logo = UIImage(named: "logo")
-        let navLogo = UIImageView(image: logo)
-        navLogo.contentMode = .scaleAspectFit
-        self.navigationItem.titleView = navLogo
+        self.navigationController?.navigationBar.setUpNavigationBar()
+        self.navigationItem.setUpLogo(image: "logo")
         
         refreshControl.addTarget(self, action: #selector(ViewController.refresh), for: .valueChanged)
         tableView.refreshControl = refreshControl
@@ -43,52 +39,22 @@ class ViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        contactList = []
-        var people: [NSManagedObject] = []
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext = appDelegate.persistentContainer.viewContext
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Contact")
-        do {
-            people = try managedContext.fetch(fetchRequest)
-            for person in people {
-                print(person)
-                self.contactList.append(ListContact(name: person.value(forKeyPath: "name") as? String ?? "", email: person.value(forKeyPath: "email") as? String ?? "", id: person.value(forKeyPath: "id") as? String ?? ""))
-            }
-        } catch let error as NSError {
-            print("could not fetch.")
-        }
+        contactList = FetchData().fetchData()
         contacts.download { results in
             let firebaseContacts = results as! [ListContact]
             self.firebaseCount = firebaseContacts.count
             for contact in firebaseContacts {
                 self.contactList.append(contact)
-                
             }
             self.tableView.reloadData()
         }
     }
     
-    
     @IBAction func addButtonPressed(_ sender: UIButton) {
         if nameInput.text != "", emailInput.text != "" {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let entity = NSEntityDescription.entity(forEntityName: "Contact", in: managedContext)!
-            let person = NSManagedObject(entity: entity, insertInto: managedContext)
             let uuid = NSUUID().uuidString
-            person.setValue(uuid, forKeyPath: "id")
-            person.setValue(nameInput.text, forKeyPath: "name")
-            person.setValue(emailInput.text, forKeyPath: "email")
             contactList.insert(ListContact(name: nameInput.text!, email: emailInput.text!, id: uuid), at: 0)
-            do {
-                try managedContext.save()
-            } catch let error as NSError {
-                print("could not save")
-            }
+            AddData().addData(name: nameInput.text!, email: emailInput.text!, uuid: uuid)
             nameInput.text = ""
             emailInput.text = ""
             AddAlert.init().showAlert(view: self)
@@ -96,6 +62,20 @@ class ViewController: UIViewController {
         else {
             ErrorAlert.init().showAlert(view: self)
         }
+    }
+}
+extension UINavigationBar {
+    func setUpNavigationBar() {
+        barTintColor = UIColor(red:0.31, green:0.81, blue:0.28, alpha:1.0)
+        isTranslucent = false
+    }
+}
+extension UINavigationItem {
+    func setUpLogo(image: String) {
+        let logo = UIImage(named: image)
+        let navLogo = UIImageView(image: logo)
+        navLogo.contentMode = .scaleAspectFit
+        titleView = navLogo
     }
 }
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -115,29 +95,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete && indexPath.row < contactList.count-firebaseCount {
-            
-            var people: [NSManagedObject] = []
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
-            let managedContext = appDelegate.persistentContainer.viewContext
-            let fetchPredicate = NSPredicate(format: "id == %@", contactList[indexPath.row].id)
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Contact")
-            fetchRequest.predicate = fetchPredicate
-            fetchRequest.returnsObjectsAsFaults = false
-            do {
-                let fetchedUsers = try managedContext.fetch(fetchRequest)
-                for fetchedUser in fetchedUsers {
-                    managedContext.delete(fetchedUser)
-                    try managedContext.save()
-                }
-            } catch {
-                print("didnt work")
-            }
+            DeleteData().deleteData(id: contactList[indexPath.row].id)
             contactList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else {
-            ContactDeleteAlert.init().showAlert(view: self)
+            ContactDeleteAlert().showAlert(view: self)
         }
     }
     
@@ -148,6 +110,5 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         return 1
     }
-    
 }
 
